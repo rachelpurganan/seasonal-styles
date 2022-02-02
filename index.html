@@ -36,9 +36,20 @@
 	margin-left:5%;
     }
 
+    /*
+
     div#myDiv{
         background-color: yellow;
     }
+    div#myOtherDiv p{
+        background-color: yellow;
+    }
+    div#yetAnotherDiv li{
+        background-color: yellow;
+    }
+
+    */
+    
   </style>
  </head>
  <body>
@@ -68,6 +79,25 @@
         </ul>
     </p>
     <div id = "myDiv">This is inside a div with the id of myDiv</div>
+
+    <div id = "myOtherDiv">
+        <p>I'm in a p tag!</p>
+        <p>I'm in a p tag!</p>
+        <p>I'm in a p tag!</p>
+        <p>I'm in a p tag!</p>
+        <p>I'm in a p tag!</p>
+    </div>
+
+    <div id = "yetAnotherDiv">
+        <ul>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+            <li>I'm a list item!</li>
+        </ul>
+    </div>
+
     <p>
     Aesthetic gentrify YOLO McSweeney's typewriter single-origin coffee. Slow-carb hella listicle lomo, Helvetica single-origin coffee butcher stumptown. Chambray try-hard church-key mumblecore, tote bag PBR cardigan. Retro Austin Brooklyn, blog Intelligentsia gentrify jean shorts sartorial bicycle rights gastropub. Aesthetic wayfarers Pitchfork, tattooed Carles quinoa meh leggings distillery pork belly banjo. Umami cred lumbersexual skateboard, pork belly Tumblr vegan letterpress. Fixie bicycle rights butcher chillwave, gluten-free health goth Echo Park locavore whatever.
     <img src="images/300x400.png" alt="Season Wear Goes Here" id="wear" />
@@ -91,6 +121,7 @@
   </main>
   <script src="js/main.js"></script>
   <script>
+
     //javascript
     document.querySelector("div#myDiv").style.backgroundColor = "blue";
     document.querySelector("div#myDiv").innerHTML = "Here is some new text!";
@@ -98,9 +129,26 @@
     //jQuery
     $("document").ready(function(){
         //alert("I'm still jQuery!");
-        $("div#myDiv").css("background-color", "green");
-        //  selector            css
-        $("div#myDiv").text("Here's how we do it in jQuery!");
+
+        let $theDiv = $("div#myDiv");
+        //the dollar sign on the variable is an indication that it is a jQuery variable. The $("div#myDiv") is the selector.
+
+
+        //this is an example of chaining. this is the same as if it was one, long, ugly line.
+        $theDiv
+        .css("background-color", "blue")
+        .css("border", "1px solid black")
+        .append(" Here's some additional text!")
+        .fadeOut(3000);
+
+            //  selector            css
+//        $("div#myDiv").apphend(" Here's some additional text!");
+
+        let counter = 0;
+        $("div#myOtherDiv p").each(function(){ //this function adds numbers in front of each <p> tag, to label them.
+            counter++; //increments the counter
+            $(this).prepend(counter + ") "); //"this" is the <p> tag! "prepend" let us put stuff in front. 
+        });
     });
 
   </script>
