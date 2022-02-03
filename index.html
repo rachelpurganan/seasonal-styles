@@ -36,19 +36,9 @@
 	margin-left:5%;
     }
 
-    /*
-
-    div#myDiv{
-        background-color: yellow;
+    li.seasons a{
+        /*color: red;*/
     }
-    div#myOtherDiv p{
-        background-color: yellow;
-    }
-    div#yetAnotherDiv li{
-        background-color: yellow;
-    }
-
-    */
     
   </style>
  </head>
@@ -78,25 +68,6 @@
             <li>Winter: <b>#005393</b></li>
         </ul>
     </p>
-    <div id = "myDiv">This is inside a div with the id of myDiv</div>
-
-    <div id = "myOtherDiv">
-        <p>I'm in a p tag!</p>
-        <p>I'm in a p tag!</p>
-        <p>I'm in a p tag!</p>
-        <p>I'm in a p tag!</p>
-        <p>I'm in a p tag!</p>
-    </div>
-
-    <div id = "yetAnotherDiv">
-        <ul>
-            <li>I'm a list item!</li>
-            <li>I'm a list item!</li>
-            <li>I'm a list item!</li>
-            <li>I'm a list item!</li>
-            <li>I'm a list item!</li>
-        </ul>
-    </div>
 
     <p>
     Aesthetic gentrify YOLO McSweeney's typewriter single-origin coffee. Slow-carb hella listicle lomo, Helvetica single-origin coffee butcher stumptown. Chambray try-hard church-key mumblecore, tote bag PBR cardigan. Retro Austin Brooklyn, blog Intelligentsia gentrify jean shorts sartorial bicycle rights gastropub. Aesthetic wayfarers Pitchfork, tattooed Carles quinoa meh leggings distillery pork belly banjo. Umami cred lumbersexual skateboard, pork belly Tumblr vegan letterpress. Fixie bicycle rights butcher chillwave, gluten-free health goth Echo Park locavore whatever.
@@ -113,7 +84,7 @@
     </p>
     <footer>
     <p><small>&copy; 2021 by 
-        YOUR NAME HERE, All Rights Reserved ~ 
+        Rachel Purganan, All Rights Reserved ~ 
         <a id="html-checker" href="#">Check HTML</a> ~ 
         <a id="css-checker" href="#">Check CSS</a></small>
     </p>
@@ -122,34 +93,67 @@
   <script src="js/main.js"></script>
   <script>
 
-    //javascript
-    document.querySelector("div#myDiv").style.backgroundColor = "blue";
-    document.querySelector("div#myDiv").innerHTML = "Here is some new text!";
+/*
+change the src of the img with an id of "logo". this is the logo on top. 
+change the src of the img with an id of "wear". this is the clothing.
+Spring: #2B7129
+Summer: #EBA52B
+Fall: #A81124
+Winter: #005393
+*/
 
-    //jQuery
     $("document").ready(function(){
-        //alert("I'm still jQuery!");
+        $("li.seasons a").click(function(e){ //we put el = element, er = error, ev = event. putting e stops the normal operation/its default.
+            e.preventDefault(e);
 
-        let $theDiv = $("div#myDiv");
-        //the dollar sign on the variable is an indication that it is a jQuery variable. The $("div#myDiv") is the selector.
+            let season = $(this).attr("href");
 
+            switch(season) {
+                case "Spring":
+                    $("#logo").attr("src", "images/spring.gif"); 
+                    $("#wear").attr("src", "images/spring-wear.jpg");
+                    $("html").css("background-color", "#2B7129");
+                    $("h3").text("Spring");  
+                    break;
 
-        //this is an example of chaining. this is the same as if it was one, long, ugly line.
-        $theDiv
-        .css("background-color", "blue")
-        .css("border", "1px solid black")
-        .append(" Here's some additional text!")
-        .fadeOut(3000);
+                case "Summer":
+                    $("#logo").attr("src", "images/summer.gif"); 
+                    $("#wear").attr("src", "images/summer-wear.jpg");
+                    $("html").css("background-color", "#EBA52B"); 
+                    $("h3").text("Summer");                     
+                    break;
 
-            //  selector            css
-//        $("div#myDiv").apphend(" Here's some additional text!");
+                case "Fall":
+                    $("#logo").attr("src", "images/fall.gif"); 
+                    $("#wear").attr("src", "images/fall-wear.jpg");
+                    $("html").css("background-color", "#A81124");
+                    $("h3").text("Fall");  
+                    break;
 
-        let counter = 0;
-        $("div#myOtherDiv p").each(function(){ //this function adds numbers in front of each <p> tag, to label them.
-            counter++; //increments the counter
-            $(this).prepend(counter + ") "); //"this" is the <p> tag! "prepend" let us put stuff in front. 
+                case "Winter":
+                    $("#logo").attr("src", "images/winter.gif"); 
+                    $("#wear").attr("src", "images/winter-wear.jpg");
+                    $("html").css("background-color", "#005393");
+                    $("h3").text("Winter");  
+                    break;
+                
+                case "Default":
+                    $("#logo").attr("src", "images/four-seasons.gif"); 
+                    $("#wear").attr("src", "images/300x400.png");
+                    $("html").css("background-color", "#ccc");
+                    $("h3").text("Outfitter for All Seasons!");  
+                    break;
+
+            }
+
+            //attr takes two parameters: what it was, and what you want it to be. this way, you can change it.
+            //alert(season); //when you click on the season, it will display what you've clicked as an alert
+
+            //alert("I'm clicked");
         });
     });
+
+
 
   </script>
   </body>
